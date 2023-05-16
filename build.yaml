@@ -1,0 +1,6 @@
+dependencies:
+  - name: rnd
+    type: Library
+    repository: "https://github.com/garbagemza/rnd.git"
+    version: 0.0.1
+
