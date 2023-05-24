@@ -1,6 +1,6 @@
 dependencies:
-  - name: rnd
+  - name: fp
     type: Library
-    repository: "https://github.com/garbagemza/rnd.git"
-    version: 0.0.1
+    repository: "https://github.com/garbagemza/fp.git"
+    version: 0.0.2
 

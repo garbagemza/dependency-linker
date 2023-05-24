@@ -34,7 +34,6 @@ import (
   "os"
   "io/ioutil"
   "os/exec"
-  "strings"
   "gopkg.in/yaml.v3"
 )
 
@@ -50,7 +49,6 @@ type Dependencies struct {
 }
 
 func main() {
-	// Load the file; returns []byte
 	f, err := os.ReadFile("build.yaml")
 	if err != nil {
 		log.Fatal(err)
@@ -93,18 +91,19 @@ func linkDependency(dependency Dependency, sourceDir string, destinationDir stri
 
   namesFn := func(f os.FileInfo) string { return sourceDir + f.Name() }
   fileNames := Map(files, namesFn)
-  names := strings.Join(fileNames, " ")
   
   outputFileName := destinationDir + dependency.Name + ".a"
-  buildArchive(names, outputFileName)
+  buildArchive(outputFileName, fileNames)
 }
 
-func buildArchive(sourceFileNames string, outputFileName string)  {
+func buildArchive(outputFileName string, sourceFileNames[] string)  {
+  var args []string
+  args = append(args, "rcs", outputFileName)
+  args = append(args, sourceFileNames...)
+
   cmd := exec.Command(
     "ar",
-    "rcs",
-    outputFileName,
-    sourceFileNames)
+    args...)
 
   out, err := cmd.CombinedOutput()
   if err != nil {
