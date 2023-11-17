@@ -1,4 +1,4 @@
-module garbagemza/depcheck
+module garbagemza/cdlinker
 
 go 1.20
 
